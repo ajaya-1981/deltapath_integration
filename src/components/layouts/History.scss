@@ -1,0 +1,27 @@
+.history {
+    &__container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    &__heading {
+        border-bottom: 1px solid lightgray;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        .text {
+            font-size: 16px;
+        }
+    }
+    &__call-section {
+        .call-details {
+            padding: 10px;
+            border-bottom: 1px solid lightgray;
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+
+            .date-time {
+                color: #808081;
+            }
+        }
+    }
+}
