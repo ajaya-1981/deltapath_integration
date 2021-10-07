@@ -3,7 +3,7 @@ import KeyPadComponent from '../call/KeyPadComponent';
 import InputComponent from '../call/InputComponent';
 import ButtonComponent from '../call/ButtonComponent';
 import { useHistory } from 'react-router-dom';
-import History from './History';
+import CallAdapter from '../../Adapater/CallAdapter';
 
 const Dialer = () => {
 	const [result, setResult] = useState('');
@@ -16,6 +16,10 @@ const Dialer = () => {
 	const onClick = () => {
 		console.log('Call');
 		// deltapath = DeltapathInit(deltapath);
+		//deltapath = CallAdapter({ type: 'DeltaPath' });
+		//console.log(deltapath);
+		// window.parent.document.getElementById('input_ajaya').value = 'ajaya';
+		send();
 		history.push('/Connecting');
 	};
 	const onClick2 = () => {
@@ -51,42 +55,11 @@ const Dialer = () => {
 };
 
 export default Dialer;
-function DeltapathInit(deltapath) {
-	deltapath = new window.Deltapath(
-		'junction.deltapath.com',
-		'8000',
-		'9ug5QtSN',
-		'https'
-	);
-	console.log('Init done');
-	deltapath.onInitialize = (e) => {
-		console.log('onInitialize');
-		console.log(e);
-	};
-	deltapath.onCallUpdate = (e) => {
-		console.log('onCallUpdate');
-		console.log(e);
-	};
-	deltapath.onPresenceUpdate = (e) => {
-		// console.log('onPresenceUpdate');
-		// console.log(e);
-	};
-	deltapath.defaultEventHandler = (e) => {
-		// console.log('defaultEventHandler');
-		// console.log(e);
-	};
-	(async () => {
-		try {
-			while (true) {
-				const err = await deltapath.connect();
-				if (!err) {
-					console.log('connected with user '.concat(deltapath.username));
-					break;
-				}
-			}
-		} finally {
-			// await deltapath.disconnect();
-		}
-	})();
-	return deltapath;
-}
+
+const send = () => {
+	// e.preventDefault();
+	if (window && window.parent) {
+		console.log('we have message sending here', window.parent);
+		window.parent.postMessage('message', 'http://localhost:3006', false);
+	}
+};

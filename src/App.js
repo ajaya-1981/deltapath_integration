@@ -22,9 +22,16 @@ const App = () => {
 	// useEffect(() => {
 	//   store.dispatch(loadUser());
 	// }, []);
+	// const [text, setText] = useState('');
 	return (
 		<Router>
 			<div className='body'>
+				{/* <input
+					type='text'
+					value={text}
+					onChange={(e) => setText(e.target.value)}
+					placeholder='Add Task'
+				></input> */}
 				<Switch>
 					<Route exact path='/' component={Dialer}></Route>
 					<Route exact path='/Incoming' component={Incoming}></Route>

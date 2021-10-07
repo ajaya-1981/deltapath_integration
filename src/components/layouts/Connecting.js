@@ -8,7 +8,7 @@ const Connecting = () => {
 	const endcall = () => {
 		console.log('end call');
 		history.push('/');
-	} 
+	};
 	return (
 		<div className='container container-bkgrnd-black'>
 			<Avatar name='Foo Bar' className='avatar-align' size={100} round='50px' />
@@ -20,7 +20,11 @@ const Connecting = () => {
 				<h4 id='connecting' className='text-white'>
 					Connecting...
 				</h4>
-				<button name='endcall' className='btn btn-circle endCall' onClick={endcall}>
+				<button
+					name='endcall'
+					className='btn btn-circle endCall'
+					onClick={endcall}
+				>
 					<i className='fa fa-phone'></i>
 				</button>
 			</div>
