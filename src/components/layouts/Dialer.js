@@ -60,6 +60,6 @@ const send = () => {
 	// e.preventDefault();
 	if (window && window.parent) {
 		console.log('we have message sending here', window.parent);
-		window.parent.postMessage('message', 'http://localhost:3006', false);
+		window.parent.postMessage('try', 'http://localhost:3006');
 	}
 };
