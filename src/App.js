@@ -12,7 +12,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import { loadUser } from './actions/auth';
 // import setAuthToken from '../src/util/setAuthToken';
 import './App.css';
-import './dialer.scss';
+import './styles/dialer.scss';
 
 // if (localStorage.token) {
 //   setAuthToken(localStorage.token);

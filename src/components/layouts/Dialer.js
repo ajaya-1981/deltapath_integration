@@ -5,6 +5,8 @@ import ButtonComponent from '../call/ButtonComponent';
 import { useHistory } from 'react-router-dom';
 import CallAdapter from '../../Adapater/CallAdapter';
 
+//import '../../styles/dialer.scss';
+
 const Dialer = () => {
 	const [result, setResult] = useState('');
 	const [showHistory, setShowHistory] = useState(false);
@@ -13,7 +15,7 @@ const Dialer = () => {
 		setResult(result + val);
 	};
 	var deltapath;
-	const onClick = () => {
+	const startCall = () => {
 		console.log('Call');
 		// deltapath = DeltapathInit(deltapath);
 		//deltapath = CallAdapter({ type: 'DeltaPath' });
@@ -29,21 +31,17 @@ const Dialer = () => {
 	};
 	return (
 		<Fragment>
-			<div className='row'>
-				<div className='container container-bkgrnd-white'>
+			<div className='row dialler-window'>
+				<div className='container'>
 					<InputComponent keyPressed={result}></InputComponent>
 					<KeyPadComponent onClick={sendDigit}></KeyPadComponent>
 					<div className='btn-row'>
 						<ButtonComponent
 							cssClass='call'
-							icon='fa fa-phone'
-							onClick={onClick}
+							icon='fa fa-phone icon'
+							onClick={startCall}
 						></ButtonComponent>
-						<ButtonComponent
-							icon='fa fa-clock-o'
-							cssClass='history'
-							onClick={onClick2}
-						></ButtonComponent>
+						
 					</div>
 				</div>
 				{/* <div className='history-panel'>
@@ -60,6 +58,6 @@ const send = () => {
 	// e.preventDefault();
 	if (window && window.parent) {
 		console.log('we have message sending here', window.parent);
-		window.parent.postMessage('try', 'http://localhost:3006');
+		window.parent.postMessage({connectedState:'Connecting'}, 'http://localhost:3006');
 	}
 };
