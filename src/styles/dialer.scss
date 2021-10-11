@@ -3,11 +3,12 @@
 .dialler-window {
 	&:before {
 		position:absolute;
-		top:14px;
+		top: -14px;
 		left: 50%;
 		border: 5px solid transparent;
 		border-bottom: 11px solid white;
 	}
+	
 }
 
 textarea:hover,

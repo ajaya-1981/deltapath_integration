@@ -14,15 +14,22 @@ const Dialer = () => {
 	const sendDigit = (val) => {
 		setResult(result + val);
 	};
+	const deleteFromLast = (val) => {
+		setResult(val);
+	};
+
 	var deltapath;
 	const startCall = () => {
 		console.log('Call');
-		// deltapath = DeltapathInit(deltapath);
-		//deltapath = CallAdapter({ type: 'DeltaPath' });
-		//console.log(deltapath);
-		// window.parent.document.getElementById('input_ajaya').value = 'ajaya';
-		send();
-		history.push('/Connecting');
+		if(result) {
+			// deltapath = DeltapathInit(deltapath);
+			//deltapath = CallAdapter({ type: 'DeltaPath' });
+			//console.log(deltapath);
+			// window.parent.document.getElementById('input_ajaya').value = 'ajaya';
+			send();
+			history.push('/Connecting');
+		}
+		
 	};
 	const onClick2 = () => {
 		setShowHistory(true);
@@ -33,7 +40,7 @@ const Dialer = () => {
 		<Fragment>
 			<div className='row dialler-window'>
 				<div className='container'>
-					<InputComponent keyPressed={result}></InputComponent>
+					<InputComponent keyPressed={result} deleteFromLast={deleteFromLast}></InputComponent>
 					<KeyPadComponent onClick={sendDigit}></KeyPadComponent>
 					<div className='btn-row'>
 						<ButtonComponent

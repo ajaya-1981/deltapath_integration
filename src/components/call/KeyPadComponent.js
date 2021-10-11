@@ -18,11 +18,17 @@ const KeyPadComponent = ({ onClick }) => {
 		{number: '#'},
 	];
 
+	const pressNumber = (evt) => {
+		let name = evt.target.closest('.btn.btn-circle').name;
+		name && onClick(name);
+	}
+
 	const btns = numbersWithAlphabets.map((obj) => (
 		<button
 		name={obj.number}
 		className='btn btn-circle btn-default'
-		onClick={(e) => onClick(e.target.name)}
+		//onClick={(e) => onClick(e.target.name)}
+		onClick = {pressNumber}
 	>
 		{obj.number}
 		{obj.keys &&  <span>{obj.keys}</span>}
