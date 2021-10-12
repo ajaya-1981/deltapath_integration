@@ -21,15 +21,14 @@ const Dialer = () => {
 	var deltapath;
 	const startCall = () => {
 		console.log('Call');
-		if(result) {
+		if (result) {
 			// deltapath = DeltapathInit(deltapath);
-			//deltapath = CallAdapter({ type: 'DeltaPath' });
+			deltapath = CallAdapter({ type: 'DeltaPath' });
 			//console.log(deltapath);
 			// window.parent.document.getElementById('input_ajaya').value = 'ajaya';
 			send();
 			history.push('/Connecting');
 		}
-		
 	};
 	const onClick2 = () => {
 		setShowHistory(true);
@@ -40,7 +39,10 @@ const Dialer = () => {
 		<Fragment>
 			<div className='row dialler-window'>
 				<div className='container'>
-					<InputComponent keyPressed={result} deleteFromLast={deleteFromLast}></InputComponent>
+					<InputComponent
+						keyPressed={result}
+						deleteFromLast={deleteFromLast}
+					></InputComponent>
 					<KeyPadComponent onClick={sendDigit}></KeyPadComponent>
 					<div className='btn-row'>
 						<ButtonComponent
@@ -48,7 +50,6 @@ const Dialer = () => {
 							icon='fa fa-phone icon'
 							onClick={startCall}
 						></ButtonComponent>
-						
 					</div>
 				</div>
 				{/* <div className='history-panel'>
@@ -65,6 +66,9 @@ const send = () => {
 	// e.preventDefault();
 	if (window && window.parent) {
 		console.log('we have message sending here', window.parent);
-		window.parent.postMessage({connectedState:'Connecting'}, 'http://localhost:3006');
+		window.parent.postMessage(
+			{ connectedState: 'Connecting' },
+			'http://localhost:3006'
+		);
 	}
 };

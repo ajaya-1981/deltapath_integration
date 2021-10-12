@@ -15,8 +15,8 @@ export default CallAdapter;
 function DeltapathInit(deltapath) {
 	deltapath = new window.Deltapath(
 		'junction.deltapath.com',
-		'8000',
-		'9ug5QtSN',
+		window.agentId,
+		'58701343',
 		'https'
 	);
 	console.log('Init done');

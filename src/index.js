@@ -2,25 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
-window.addEventListener('message', event => {
-    // IMPORTANT: check the origin of the data! 
-    if (event.origin === 'http://localhost:3006') { 
-        // The data was sent from your site.
-        // Data sent with postMessage is stored in event.data:
-        console.log('Data from Agent Console : ' + JSON.stringify(event.data)); 
-		if(event.data) {
-
+window.agentId = 0;
+window.addEventListener('message', (event) => {
+	// IMPORTANT: check the origin of the data!
+	if (event.origin === 'http://localhost:3006') {
+		// The data was sent from your site.
+		// Data sent with postMessage is stored in event.data:
+		console.log('Data from Agent Console : ' + JSON.stringify(event.data));
+		if (event.data) {
+			window.agentId = event.data.agentId;
+			console.log('Agent ID: ' + window.agentId);
 		}
-    } else {
-        // The data was NOT sent from your site! 
-        // Be careful! Do not use it. This else branch is
-        // here just for clarity, you usually shouldn't need it.
+	} else {
+		// The data was NOT sent from your site!
+		// Be careful! Do not use it. This else branch is
+		// here just for clarity, you usually shouldn't need it.
 		console.log('Data from any other site is not acceptable...');
-        return; 
-    } 
-}); 
-
+		return;
+	}
+});
 
 ReactDOM.render(
 	<React.StrictMode>
