@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import KeyPadComponent from '../call/KeyPadComponent';
 import InputComponent from '../call/InputComponent';
 import ButtonComponent from '../call/ButtonComponent';
@@ -11,23 +11,56 @@ const Dialer = () => {
 	const [result, setResult] = useState('');
 	const [showHistory, setShowHistory] = useState(false);
 	const history = useHistory();
+	var deltapath;
+	/* useEffect(() => {
+		deltapath =  CallAdapter({ type: 'DeltaPath' });
+	}); */
+	
 	const sendDigit = (val) => {
 		setResult(result + val);
 	};
 	const deleteFromLast = (val) => {
 		setResult(val);
 	};
-
-	var deltapath;
+	const onType= (val) => {
+		setResult(result + val);
+	}
 	const startCall = () => {
 		console.log('Call');
 		if (result) {
-			// deltapath = DeltapathInit(deltapath);
 			deltapath = CallAdapter({ type: 'DeltaPath' });
-			//console.log(deltapath);
-			// window.parent.document.getElementById('input_ajaya').value = 'ajaya';
 			send();
 			history.push('/Connecting');
+			setTimeout(() => {
+				callDeltapath();
+			},3000);	
+		}
+	};
+	const callDeltapath = async() => {
+			try {
+				let response;
+				let numberToBeDialled = result;
+				
+				response = await deltapath.makeCall(numberToBeDialled);
+				if (!response.ok) {
+				console.log('call not ok');
+				} else {
+				console.log('call ok');
+				}
+			} 
+			finally {
+				// await deltapath.disconnect();
+				// console.log('bye');
+			}
+	} 
+	const send = () => {
+		// e.preventDefault();
+		if (window && window.parent) {
+			console.log('we have message sending here', window.parent);
+			window.parent.postMessage(
+				{ connectedState: 'Connecting' },
+				'http://localhost:3006'
+			);
 		}
 	};
 	const onClick2 = () => {
@@ -35,6 +68,7 @@ const Dialer = () => {
 		history.push('/history');
 		console.log('nnnnns');
 	};
+
 	return (
 		<Fragment>
 			<div className='row dialler-window'>
@@ -42,6 +76,7 @@ const Dialer = () => {
 					<InputComponent
 						keyPressed={result}
 						deleteFromLast={deleteFromLast}
+						onType={onType}
 					></InputComponent>
 					<KeyPadComponent onClick={sendDigit}></KeyPadComponent>
 					<div className='btn-row'>
@@ -61,14 +96,3 @@ const Dialer = () => {
 };
 
 export default Dialer;
-
-const send = () => {
-	// e.preventDefault();
-	if (window && window.parent) {
-		console.log('we have message sending here', window.parent);
-		window.parent.postMessage(
-			{ connectedState: 'Connecting' },
-			'http://localhost:3006'
-		);
-	}
-};

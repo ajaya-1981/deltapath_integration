@@ -14,17 +14,22 @@ const CallAdapter = (props) => {
 export default CallAdapter;
 function DeltapathInit(deltapath) {
 	deltapath = new window.Deltapath(
-		'junction.deltapath.com',
-		window.agentId,
-		'58701343',
-		'https'
+		window.agentInfo.hostname,
+		window.agentInfo.agentId,
+		window.agentInfo.password,
+		window.agentInfo.protocol,
+		window.agentInfo.actionTimeout,
+		window.agentInfo.reconnectInterval,
+		window.agentInfo.authmode
 	);
 	console.log('Init done');
 	deltapath.onInitialize = (e) => {
 		console.log('onInitialize');
 		console.log(e);
 	};
-	deltapath.onCallUpdate = (e) => {
+	deltapath.onCallUpdate = (e) => { 
+		//if user accept or reject call, then accordingly we have to show outgoing screen(end call, pause)
+		//if user get incoming call, accordingly we have to show incoming screen
 		console.log('onCallUpdate');
 		console.log(e);
 	};
@@ -51,3 +56,4 @@ function DeltapathInit(deltapath) {
 	})();
 	return deltapath;
 }
+

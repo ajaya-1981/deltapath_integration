@@ -1,9 +1,6 @@
 import React, { Fragment } from 'react';
 
 const ButtonComponent = ({ icon, onClick, align, cssClass }) => {
-	// const onClick = () => {
-	// 	console.log('hi clicked');
-	// };
 	return (
 		<Fragment>
 			<button
@@ -19,5 +16,4 @@ const ButtonComponent = ({ icon, onClick, align, cssClass }) => {
 		</Fragment>
 	);
 };
-// ButtonComponent.defaultProps = { color: 'green' };
 export default ButtonComponent;

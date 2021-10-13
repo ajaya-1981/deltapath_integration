@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-window.agentId = 0;
-window.password = '';
+window.agentInfo = {
+	agentId: 0,
+	password: '',
+
+}
+
 window.addEventListener('message', (event) => {
 	// IMPORTANT: check the origin of the data!
 	if (event.origin === 'http://localhost:3006') {
@@ -12,10 +16,7 @@ window.addEventListener('message', (event) => {
 		// Data sent with postMessage is stored in event.data:
 		console.log('Data from Agent Console : ' + JSON.stringify(event.data));
 		if (event.data) {
-			window.agentId = event.data.agentId;
-			window.password = event.data.password;
-			console.log('Agent ID: ' + window.agentId);
-			console.log('Password: ' + window.password);
+			window.agentInfo = event.data;
 		}
 	} else {
 		// The data was NOT sent from your site!
