@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
 window.agentId = 0;
+window.password = '';
 window.addEventListener('message', (event) => {
 	// IMPORTANT: check the origin of the data!
 	if (event.origin === 'http://localhost:3006') {
@@ -11,7 +13,9 @@ window.addEventListener('message', (event) => {
 		console.log('Data from Agent Console : ' + JSON.stringify(event.data));
 		if (event.data) {
 			window.agentId = event.data.agentId;
+			window.password = event.data.password;
 			console.log('Agent ID: ' + window.agentId);
+			console.log('Password: ' + window.password);
 		}
 	} else {
 		// The data was NOT sent from your site!
