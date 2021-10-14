@@ -4,9 +4,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 window.agentInfo = {
-	agentId: 0,
-	password: '',
-
+	hostname: "junction.deltapath.com",
+	agentId: '1800',
+	password: '58701343',
+	protocol: 'https',
+	actionTimeout: 60,
+	reconnectInterval: 40,
+	authmode: ''
 }
 
 window.addEventListener('message', (event) => {
@@ -17,6 +21,12 @@ window.addEventListener('message', (event) => {
 		console.log('Data from Agent Console : ' + JSON.stringify(event.data));
 		if (event.data) {
 			window.agentInfo = event.data;
+			ReactDOM.render(
+				<React.StrictMode>
+					<App />
+				</React.StrictMode>,
+				document.getElementById('root')
+			);
 		}
 	} else {
 		// The data was NOT sent from your site!
@@ -27,12 +37,7 @@ window.addEventListener('message', (event) => {
 	}
 });
 
-ReactDOM.render(
-	<React.StrictMode>
-		<App />
-	</React.StrictMode>,
-	document.getElementById('root')
-);
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef } from 'react';
 import KeyPadComponent from '../call/KeyPadComponent';
 import InputComponent from '../call/InputComponent';
 import ButtonComponent from '../call/ButtonComponent';
@@ -6,18 +6,19 @@ import { useHistory } from 'react-router-dom';
 import CallAdapter from '../../Adapater/CallAdapter';
 
 //import '../../styles/dialer.scss';
-
+let deltapath;
 const Dialer = () => {
 	const [result, setResult] = useState('');
 	const [showHistory, setShowHistory] = useState(false);
 	const history = useHistory();
-	var deltapath;
-	/* useEffect(() => {
+	useEffect(() => {
 		deltapath =  CallAdapter({ type: 'DeltaPath' });
-	}); */
+	},[]);
+	const inputReference = useRef(null);
 	
 	const sendDigit = (val) => {
 		setResult(result + val);
+		inputReference.current?.focus();
 	};
 	const deleteFromLast = (val) => {
 		setResult(val);
@@ -28,12 +29,9 @@ const Dialer = () => {
 	const startCall = () => {
 		console.log('Call');
 		if (result) {
-			deltapath = CallAdapter({ type: 'DeltaPath' });
 			send();
 			history.push('/Connecting');
-			setTimeout(() => {
 				callDeltapath();
-			},3000);	
 		}
 	};
 	const callDeltapath = async() => {
@@ -77,6 +75,7 @@ const Dialer = () => {
 						keyPressed={result}
 						deleteFromLast={deleteFromLast}
 						onType={onType}
+						inputRef={inputReference}
 					></InputComponent>
 					<KeyPadComponent onClick={sendDigit}></KeyPadComponent>
 					<div className='btn-row'>
@@ -91,6 +90,8 @@ const Dialer = () => {
 					{showHistory && <History></History>}
 				</div> */}
 			</div>
+			
+			
 		</Fragment>
 	);
 };
