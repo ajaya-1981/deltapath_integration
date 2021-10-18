@@ -24,6 +24,7 @@ const InputComponent = ({ keyPressed, deleteFromLast, onType, inputRef }) => {
 				onKeyDown={updateInputBox}
 				className='form-control'
 				placeholder='555-666-7777'
+				onChange={() => {}}
 				ref={inputRef}
 			/>
 			{keyPressed && (

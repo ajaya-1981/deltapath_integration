@@ -1,6 +1,7 @@
 import React from 'react';
 import Avatar from 'react-avatar';
 import { useHistory } from 'react-router-dom';
+import './Connecting.scss';
 
 const Connecting = () => {
 	const history = useHistory();
@@ -10,23 +11,18 @@ const Connecting = () => {
 		history.push('/');
 	};
 	return (
-		<div className='container container-bkgrnd-black'>
-			<Avatar name='Foo Bar' className='avatar-align' size={100} round='50px' />
-
-			<div className='div-margin-top'>
-				<h2 id='callingName' className='text-white'>
+		<div className='container connecting__container'>
+			<div className="avatar"><i className="icon fa fa-user" aria-hidden="true"></i></div>
+			<div className='text'>
+				<h2 id='callingName' className='text--username'>
 					User Name
 				</h2>
-				<h4 id='connecting' className='text-white'>
+				<h4 className='text--connecting'>
 					Connecting...
 				</h4>
-				<button
-					name='endcall'
-					className='btn btn-circle endCall'
-					onClick={endcall}
-				>
-					<i className='fa fa-phone'></i>
-				</button>
+			</div>
+			<div className="button__call btn btn-circle" onClick={endcall}>
+				<i className='icon fa fa-phone'></i>
 			</div>
 		</div>
 	);

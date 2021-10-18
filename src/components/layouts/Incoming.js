@@ -4,9 +4,8 @@ import ButtonComponent from '../call/ButtonComponent';
 
 const Incoming = () => {
 	return (
-		<div className='container container-bkgrnd-white'>
-			<Avatar name='Foo Bar' className='avatar-align' size={100} round='50px' />
-
+		<div className='container container__incoming'>
+			<div class="avatar"><i class="icon fa fa-user" aria-hidden="true"></i></div>
 			<div className='div-margin-top'>
 				<h2 id='callingName' className='text-white'>
 					User Name

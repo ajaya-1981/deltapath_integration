@@ -340,11 +340,19 @@ button {
 .container {
 	border: 1px solid #ccc;
 	border-radius: 6px;
-	width: 400px;
+	width: 300px;
 	padding: 20px;
-	height: 600px;
+	height: 515px;
 	text-align: center;
 	box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+	margin-top: 15px;
+}
+.container::before {
+	position:absolute;
+	top: 0;
+	left: 50%;
+	border: 5px solid transparent;
+	border-bottom: 11px solid #ccc;
 }
 .container-bkgrnd-white {
 	background-color: white;

@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+//This is default value, used hare just for completeness. It's not needed right now.
+//In future, it can be replaced with values getting from some config file.
 window.agentInfo = {
 	hostname: "junction.deltapath.com",
 	agentId: '1800',
@@ -36,8 +38,6 @@ window.addEventListener('message', (event) => {
 		return;
 	}
 });
-
-
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
