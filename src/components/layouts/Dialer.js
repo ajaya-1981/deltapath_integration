@@ -9,13 +9,13 @@ import CallAdapter from '../../Adapater/CallAdapter';
 let deltapath;
 const Dialer = () => {
 	const [result, setResult] = useState('');
-	const [showHistory, setShowHistory] = useState(false);
+	// const [showHistory, setShowHistory] = useState(false);
 	const history = useHistory();
 	useEffect(() => {
-		deltapath =  CallAdapter({ type: 'DeltaPath' });
-	},[]);
+		deltapath = CallAdapter({ type: 'DeltaPath' });
+	}, []);
 	const inputReference = useRef(null);
-	
+
 	const sendDigit = (val) => {
 		setResult(result + val);
 		inputReference.current?.focus();
@@ -23,49 +23,48 @@ const Dialer = () => {
 	const deleteFromLast = (val) => {
 		setResult(val);
 	};
-	const onType= (val) => {
+	const onType = (val) => {
 		setResult(result + val);
-	}
+	};
 	const startCall = () => {
 		console.log('Call');
 		if (result) {
 			send();
 			history.push('/Connecting');
-				callDeltapath();
+			callDeltapath();
 		}
 	};
-	const callDeltapath = async() => {
-			try {
-				let response;
-				let numberToBeDialled = result;
-				
-				response = await deltapath.makeCall(numberToBeDialled);
-				if (!response.ok) {
+	const callDeltapath = async () => {
+		try {
+			let response;
+			let numberToBeDialled = result;
+
+			response = await deltapath.makeCall(numberToBeDialled);
+			if (!response.ok) {
 				console.log('call not ok');
-				} else {
+			} else {
 				console.log('call ok');
-				}
-			} 
-			finally {
-				// await deltapath.disconnect();
-				// console.log('bye');
 			}
-	} 
+		} finally {
+			// await deltapath.disconnect();
+			// console.log('bye');
+		}
+	};
 	const send = () => {
 		// e.preventDefault();
 		if (window && window.parent) {
-			console.log('we have message sending here', window.parent);
+			// console.log('we have message sending here', window.parent);
 			window.parent.postMessage(
 				{ connectedState: 'Connecting' },
 				'http://localhost:3006'
 			);
 		}
 	};
-	const onClick2 = () => {
-		setShowHistory(true);
-		history.push('/history');
-		console.log('nnnnns');
-	};
+	// const onClick2 = () => {
+	// 	setShowHistory(true);
+	// 	history.push('/history');
+	// 	console.log('nnnnns');
+	// };
 
 	return (
 		<Fragment>
@@ -90,8 +89,6 @@ const Dialer = () => {
 					{showHistory && <History></History>}
 				</div> */}
 			</div>
-			
-			
 		</Fragment>
 	);
 };

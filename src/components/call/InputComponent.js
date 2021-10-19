@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './InputComponent.scss';
 import { BsBackspace } from 'react-icons/bs';
 
@@ -8,14 +8,13 @@ const InputComponent = ({ keyPressed, deleteFromLast, onType, inputRef }) => {
 		deleteFromLast(keyPressed);
 	};
 	const updateInputBox = (e) => {
-		if(!isNaN(+e.key)) {
+		if (!isNaN(+e.key)) {
 			onType(e.key);
-		}
-		else if(e.key === 'Backspace') {
+		} else if (e.key === 'Backspace') {
 			remove();
 		}
-	}
-	
+	};
+
 	return (
 		<div className='input-group input-group-lg input'>
 			<input

@@ -6,6 +6,7 @@ import Connecting from './components/layouts/Connecting';
 import History from './components/layouts/History';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 //redux
 // import { Provider } from 'react-redux';
 // import store from './store';

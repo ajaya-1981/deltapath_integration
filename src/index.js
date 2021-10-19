@@ -2,22 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+const ConfigSettings = require('./Config.json');
 //This is default value, used hare just for completeness. It's not needed right now.
 //In future, it can be replaced with values getting from some config file.
 window.agentInfo = {
-	hostname: "junction.deltapath.com",
+	hostname: 'junction.deltapath.com',
 	agentId: '1800',
 	password: '58701343',
 	protocol: 'https',
 	actionTimeout: 60,
 	reconnectInterval: 40,
-	authmode: ''
-}
+	authmode: '',
+};
 
 window.addEventListener('message', (event) => {
 	// IMPORTANT: check the origin of the data!
-	if (event.origin === 'http://localhost:3006') {
+	if (event.origin === ConfigSettings.Dialer_Url) {
 		// The data was sent from your site.
 		// Data sent with postMessage is stored in event.data:
 		console.log('Data from Agent Console : ' + JSON.stringify(event.data));
@@ -34,7 +34,7 @@ window.addEventListener('message', (event) => {
 		// The data was NOT sent from your site!
 		// Be careful! Do not use it. This else branch is
 		// here just for clarity, you usually shouldn't need it.
-		console.log('Data from any other site is not acceptable...');
+		// console.log('Data from any other site is not acceptable...');
 		return;
 	}
 });
