@@ -31,7 +31,7 @@ const Dialer = () => {
 		if (result) {
 			send();
 			history.push('/Connecting');
-			callDeltapath();
+			// callDeltapath();
 		}
 	};
 	const callDeltapath = async () => {
