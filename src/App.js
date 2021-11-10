@@ -3,6 +3,7 @@ import React from 'react';
 import Dialer from './components/layouts/Dialer';
 import Incoming from './components/layouts/Incoming';
 import Connecting from './components/layouts/Connecting';
+import Ongoing from './components/layouts/Ongoing';
 import History from './components/layouts/History';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -38,6 +39,7 @@ const App = () => {
 					<Route exact path='/Incoming' component={Incoming}></Route>
 					<Route exact path='/Connecting' component={Connecting}></Route>
 					<Route exact path='/history' component={History}></Route>
+					<Route exact path='/Ongoing' component={Ongoing}></Route>
 				</Switch>
 			</div>
 		</Router>

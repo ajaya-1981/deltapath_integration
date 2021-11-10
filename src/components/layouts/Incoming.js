@@ -1,43 +1,46 @@
 import React from 'react';
-import Avatar from 'react-avatar';
 import ButtonComponent from '../call/ButtonComponent';
+import Avatar from './Avatar';
+import './Incoming.scss';
+import {loadcallAccept, loadCallDecline} from '../../assets/icons';
 
 const Incoming = () => {
+	const acceptCall = () => {
+
+	}
+	const denyCall = () => {
+
+	}
+	
 	return (
 		<div className='container container__incoming'>
-			<div class="avatar"><i class="icon fa fa-user" aria-hidden="true"></i></div>
-			<div className='div-margin-top'>
-				<h2 id='callingName' className='text-white'>
-					User Name
+			<Avatar />
+
+			<div className='text'>
+				<h2 className='text--username'>
+					Visitor Name
 				</h2>
-				<h4 id='connecting' className='text-white'>
-					Connecting...
-				</h4>
-				{/* <ButtonComponent
-					align='left'
-					cssClass='endCall'
-					icon='fa fa-phone'
-					// onClick={onClick}
-				></ButtonComponent> */}
-				{/* <button name='endcall' className='btn btn-circle endCall'>
-					<i className='fa fa-phone'></i>
-				</button> */}
-				<div className='btn-row'>
-					<span>Accept</span>
-					<ButtonComponent
-						align='left'
-						cssClass='Accept'
-						icon='fa fa-phone'
-						// onClick={onClick}
-					></ButtonComponent>
-					<ButtonComponent
-						align='right'
-						icon='fa fa-phone'
-						cssClass='Reject'
-						// onClick={onClick2}
-					></ButtonComponent>
-				</div>
+				<h4 className='text--connecting'>188 8888 8888</h4>
+				<h4 className='text--connecting'>Connecting...</h4>
 			</div>
+
+			<div className="btn-section">
+
+				<div>
+					<div className='button__decline' onClick={denyCall}>
+						{loadCallDecline()}
+					</div>
+					<span class="text">Decline</span>
+				</div>
+				<div>
+					<div className='button__accept' onClick={acceptCall}>
+						{loadcallAccept()}
+					</div>
+					<span class="text">Accept</span>
+				</div>
+								
+			</div>
+			
 		</div>
 	);
 };

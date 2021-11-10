@@ -1,0 +1,10 @@
+@mixin button_basic {
+    background-color: #d41616;
+    color: white;
+    margin-top: 35px;
+    text-align: center;
+    .icon {
+        font-size: 40px;
+        margin-top: 7px;
+    }
+}

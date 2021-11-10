@@ -1,0 +1,13 @@
+@import '../../styles/utilities.scss';
+.container {
+    &__ongoing {
+        .button__pause, .button__resume {
+            @include button_basic();
+            margin-bottom: 5px;
+            .text {
+                font-size: 12px;
+                line-height: 15px;
+            }
+        }
+    }
+}
